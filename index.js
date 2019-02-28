@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ListView,
+  FlatList,
   Platform,
   StyleSheet,
   Text,
@@ -56,7 +56,7 @@ class Autocomplete extends Component {
      */
     onShowResults: PropTypes.func,
     /**
-     * method for intercepting swipe on ListView. Used for ScrollView support on Android
+     * method for intercepting swipe on FlatList. Used for ScrollView support on Android
      */
     onStartShouldSetResponderCapture: PropTypes.func,
     /**
@@ -95,7 +95,7 @@ class Autocomplete extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({ rowHasChanged: props.rowHasChanged });
+    const ds = new FlatList.DataSource({ rowHasChanged: props.rowHasChanged });
     this.state = { dataSource: ds.cloneWithRows(props.data) };
     this.resultList = null;
   }
@@ -133,7 +133,7 @@ class Autocomplete extends Component {
     } = this.props;
 
     return (
-      <ListView
+      <FlatList
         ref={(resultList) => { this.resultList = resultList; }}
         dataSource={dataSource}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
